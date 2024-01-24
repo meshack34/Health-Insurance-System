@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard</title>
+</head>
+<body>
+
+    <h1>Welcome, {{ current_user.username }}!</h1>
+
+    {% if customer_profile %}
+        <h2>Your Profile Information:</h2>
+        <p><strong>Name:</strong> {{ customer_profile.user.get_full_name }}</p>
+        <p><strong>Email:</strong> {{ customer_profile.user.email }}</p>
+        <p><strong>Phone Number:</strong> {{ customer_profile.user.phone_number }}</p>
+        <p><strong>Address:</strong> {{ customer_profile.address }}</p>
+        <!-- Add more fields as needed -->
+    {% else %}
+        <p>No customer profile found. Please update your profile.</p>
+    {% endif %}
+
+    <!-- Add additional content based on your requirements -->
+
+    <a href="{% url 'logout' %}">Logout</a>
+
+</body>
+</html>

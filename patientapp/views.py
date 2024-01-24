@@ -115,3 +115,23 @@ def calculate_age_years(date_of_birth):
         return age
     return None
 
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from .models import Customer
+
+@login_required(login_url='login')  # Redirect to login page if not logged in
+def customer_dashboard(request):
+    # Retrieve the current user and their associated customer profile
+    current_user = request.user
+    try:
+        customer_profile = Customer.objects.get(user=current_user)
+    except Customer.DoesNotExist:
+        # Handle the case where the customer profile doesn't exist
+        customer_profile = None
+
+    context = {
+        'current_user': current_user,
+        'customer_profile': customer_profile,
+    }
+
+    return render(request, 'customers/customer_dashboard.html', context)
