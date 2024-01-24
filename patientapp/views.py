@@ -134,4 +134,4 @@ def customer_dashboard(request):
         'customer_profile': customer_profile,
     }
 
-    return render(request, 'customers/customer_dashboard.html', context)
+    return render(request, 'customers/patient_dashboard.html', context)
